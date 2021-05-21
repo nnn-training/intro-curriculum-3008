@@ -1,0 +1,9 @@
+clear
+yarn install
+env HUBOT_SLACK_TOKEN=xoxb-2078050673686-2084863281026-ANj6fyNEWJVCc43gXNpnImze
+env HUBOT_SLACK_TOKEN=xoxb-2078050673686-2084863281026-ANj6fyNEWJVCc43gXNpnImze bin/hubot --adapter slack
+env HUBOT_SLACK_TOKEN=xoxb-2078050673686-2084863281026-ANj6fyNEWJVCc43gXNpnImze bin/hubot --adapter slack
+clear
+env HUBOT_SLACK_TOKEN=xoxb-2078050673686-2084863281026-ANj6fyNEWJVCc43gXNpnImze bin/hubot --adapter slack
+env HUBOT_SLACK_TOKEN=xoxb-2078050673686-2084863281026-ANj6fyNEWJVCc43gXNpnImze bin/hubot --adapter slack
+exit
