@@ -1,0 +1,12 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Noriyuki Matsumoto
+	email = matsunori39@gmail.com
+[core]
+	editor = vim
+[credential]
+	helper = "!f() { /home/hubot-todo/.vscode-server/bin/c3f126316369cd610563c75b1b1725e0679adfb3/node /tmp/vscode-remote-containers-160d10f77ecce1d27661852971b3bb95ef78b881.js $*; }; f"
