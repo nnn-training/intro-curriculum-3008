@@ -1,0 +1,3 @@
+pwd
+bin/hubot
+exit
