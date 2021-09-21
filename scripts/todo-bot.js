@@ -12,22 +12,32 @@ module.exports = robot => {
   robot.respond(/add (.+)/i, msg => {
     const task = msg.match[1].trim();
     todo.add(task);
-    msg.send('追加しました: ' + task);
+    msg.send(`「${task}」を追加したよ`);
   });
   robot.respond(/done (.+)/i, msg => {
     const task = msg.match[1].trim();
     todo.done(task);
-    msg.send('完了にしました: ' + task);
+    msg.send(`「${task}」を完了！`);
   });
   robot.respond(/del (.+)/i, msg => {
     const task = msg.match[1].trim();
     todo.del(task);
-    msg.send('削除しました: ' + task);
+    msg.send(`「${task}」を消したよ`);
   });
   robot.respond(/list/i, msg => {
-    msg.send(todo.list().join('\n'));
+    const list = todo.list();
+    if (list.length === 0){
+      msg.send('(タスクが一つもないよ)')
+    }　else {
+      msg.send(todo.list().join('\n'));
+    }
   });
   robot.respond(/donelist/i, msg => {
-    msg.send(todo.donelist().join('\n'));
+    const donelist = todo.donelist();
+    if (donelist.length === 0){
+      msg.send('(まだタスクを完了していないよ)')
+    }　else {
+      msg.send(todo.donelist().join('\n'));
+    }
   });
 };
