@@ -60,3 +60,6 @@ typings/
 # Hubot stuff
 .DS_Store*
 .hubot_history
+
+# bash履歴
+.bash_history
