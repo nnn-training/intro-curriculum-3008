@@ -9,25 +9,33 @@
 'use strict';
 const todo = require('todo');
 module.exports = robot => {
-  robot.respond(/add (.+)/i, msg => {
-    const task = msg.match[1].trim();
-    todo.add(task);
-    msg.send('追加しました: ' + task);
-  });
-  robot.respond(/done (.+)/i, msg => {
-    const task = msg.match[1].trim();
-    todo.done(task);
-    msg.send('完了にしました: ' + task);
-  });
-  robot.respond(/del (.+)/i, msg => {
-    const task = msg.match[1].trim();
-    todo.del(task);
-    msg.send('削除しました: ' + task);
-  });
-  robot.respond(/list/i, msg => {
-    msg.send(todo.list().join('\n'));
-  });
-  robot.respond(/donelist/i, msg => {
-    msg.send(todo.donelist().join('\n'));
-  });
+    robot.respond(/add (.+)/i, msg => {
+        const task = msg.match[1].trim();
+        todo.add(task);
+        msg.send('追加しました: ' + task);
+    });
+    robot.respond(/done (.+)/i, msg => {
+        const task = msg.match[1].trim();
+        todo.done(task);
+        msg.send('完了にしました: ' + task);
+    });
+    robot.respond(/del (.+)/i, msg => {
+        const task = msg.match[1].trim();
+        todo.del(task);
+        msg.send('削除しました: ' + task);
+    });
+    robot.respond(/list/i, msg => {
+        const list = todo.list();
+        const res = list.length === 0
+            ? '(TODO はありません)'
+            : list.join('\n');
+        msg.send(res);
+    });
+    robot.respond(/donelist/i, msg => {
+        const donelist = todo.donelist();
+        const res = donelist.length === 0
+            ? '(完了した TODO はありません)'
+            : donelist.join('\n');
+        msg.send(res);
+    });
 };
