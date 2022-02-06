@@ -1,11 +1,11 @@
 // Description:
 //   TODO を管理できるボットです
 // Commands:
-//   ボット名 add      - TODO を作成
-//   ボット名 done     - TODO を完了にする
-//   ボット名 del      - TODO を消す
-//   ボット名 list     - TODO の一覧表示
-//   ボット名 donelist - 完了した TODO の一覧表示
+//   kei-hubot-study add      - TODO を作成
+//   kei-hubot-study done     - TODO を完了にする
+//   kei-hubot-study del      - TODO を消す
+//   kei-hubot-study list     - TODO の一覧表示
+//   kei-hubot-study donelist - 完了した TODO の一覧表示
 'use strict';
 const todo = require('todo');
 module.exports = robot => {
@@ -25,9 +25,19 @@ module.exports = robot => {
     msg.send('削除しました: ' + task);
   });
   robot.respond(/list/i, msg => {
-    msg.send(todo.list().join('\n'));
+    const list = todo.list();
+    if (list.length === 0) {
+      msg.send('TODOはありません');
+    } else {
+      msg.send(todo.list().join('\n'));
+    }
   });
   robot.respond(/donelist/i, msg => {
-    msg.send(todo.donelist().join('\n'));
+    const donelist = todo.donelist();
+    if (donelist.length === 0) {
+      msg.send('完了したTODOは  ありません');
+    } else {
+      msg.send(todo.donelist().join('\n'));
+    }
   });
 };
