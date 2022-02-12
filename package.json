@@ -1,19 +1,7 @@
 {
-  "name": "hubot-todo",
-  "version": "1.0.0",
-  "private": true,
-  "author": "User <user@example.com>",
-  "description": "A simple helpful robot for your Company",
   "dependencies": {
-    "hubot": "^3.3.2",
-    "hubot-diagnostics": "^1.0.0",
-    "hubot-help": "^1.0.1",
-    "hubot-redis-brain": "^1.0.0",
-    "hubot-rules": "^1.0.0",
-    "hubot-slack": "^4.9.0",
+    "@slack/bolt": "^3.8.1",
+    "dotenv": "^10.0.0",
     "todo": "./todo"
-  },
-  "engines": {
-    "node": "> 8.0.0"
   }
 }
