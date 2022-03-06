@@ -30,4 +30,21 @@ module.exports = robot => {
   robot.respond(/donelist/i, msg => {
     msg.send(todo.donelist().join('\n'));
   });
+  robot.respond(/list/i, msg => {
+    const list = todo.list();
+    if(list.length ===0){
+      msg.send('No ToDo');
+    } else{
+      msg.send(list.join('¥n'));
+    }
+  });
+  robot.respond(/donelist/i, msg =>{
+    const donelist = todo.donelist();
+    if(donelist.length === 0){
+      msg.send('No tasks done');
+    } else{
+      msg.send(donelist.join('¥n'));
+    }
+  });
+  robot
 };
