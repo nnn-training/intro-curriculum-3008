@@ -22,19 +22,19 @@ const app = new bolt.App({
 app.message(/add (.+)/i, ({context, say}) => {
   const task = context.matches[1].trim();
   todo.add(task);
-  say('追加しました: ' + task);
+  say(`追加しました: ${task}`);
 });
 
 app.message(/done (.+)/i, ({context, say}) => {
   const task = context.matches[1].trim();
   todo.done(task);
-  say('完了にしました: ' + task);
+  say(`完了にしました: ${task}`);
 });
  
 app.message(/del (.+)/i, ({context, say}) => {
   const task = context.matches[1].trim();
   todo.del(task);
-  say('削除しました: ' + task);
+  say(`削除しました: ${task}`);
 });
 
 app.message(/^list/i, ({context, say}) => {
