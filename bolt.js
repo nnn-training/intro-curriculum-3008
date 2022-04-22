@@ -37,12 +37,25 @@ app.message(/del (.+)/i, ({context, say}) => {
   say(`削除しました: ${task}`);
 });
 
+// 20220422 今回の問題が解けませんでした。
+// ※ifに入れる比較演算子の実装が浮かばなかったため
+
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  const list = todo.list();
+  if (list.length === 0) {
+    say('(TODO はありません)');
+  } else {
+    say(list.join('\n'));
+  }
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('(完了した TODO はありません)');
+  } else {
+    say(donelist.join('\n'));
+  }
 });
 
 app.start();
