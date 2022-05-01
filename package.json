@@ -1,5 +1,5 @@
 {
-  "name": "hubot-todo",
+  "name": "test",
   "version": "1.0.0",
   "private": true,
   "author": "User <user@example.com>",
@@ -15,5 +15,8 @@
   },
   "engines": {
     "node": "> 8.0.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:watnabm/intro-curriculum-3008.git",
+  "license": "MIT"
 }
