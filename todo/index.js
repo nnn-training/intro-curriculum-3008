@@ -36,6 +36,9 @@ function list() {
   return tasks
     .filter(isNotDone)
     .map(t => t.name);
+    if (tasks = '') {
+      return 'タスクはありません'
+    }
 }
 
 /**
