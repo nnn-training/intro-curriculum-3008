@@ -19,30 +19,40 @@ const app = new bolt.App({
   logLevel: 'debug'
 });
 
-app.message(/add (.+)/i, ({context, say}) => {
+app.message(/add (.+)/i, ({ context, say }) => {
   const task = context.matches[1].trim();
   todo.add(task);
   say(`追加しました: ${task}`);
 });
 
-app.message(/done (.+)/i, ({context, say}) => {
+app.message(/done (.+)/i, ({ context, say }) => {
   const task = context.matches[1].trim();
   todo.done(task);
   say(`完了にしました: ${task}`);
 });
- 
-app.message(/del (.+)/i, ({context, say}) => {
+
+app.message(/del (.+)/i, ({ context, say }) => {
   const task = context.matches[1].trim();
   todo.del(task);
   say(`削除しました: ${task}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+app.message(/^list/i, ({ context, say }) => {
+  const list = todo.list();
+  if (list.length === 0) {
+    say('(TODOはありません)');
+  } else {
+    say(list.join('\n'));
+  }
 });
 
-app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+app.message(/donelist/i, ({ context, say }) => {
+  const list = todo.donelist();
+  if (list.length === 0) {
+    say('(TODOはありません)');
+  } else {
+    say(list.join('\n'));
+  }
 });
 
 app.start();
