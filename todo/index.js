@@ -3,7 +3,7 @@
 const tasks = [];
 
 /**
- * TODOを追加する
+ * タスクを追加する
  * @param {string} task
  */
 function add(task) {
@@ -29,7 +29,7 @@ function isNotDone(task) {
 }
 
 /**
- * TODO一覧の配列を取得する
+ * タスクの一覧の配列を取得する
  * @return {array}
  */
 function list() {
@@ -39,7 +39,7 @@ function list() {
 }
 
 /**
- * TODOを完了状態にする
+ * タスクを完了状態にする
  * @param {string} task
  */
 function done(task) {
