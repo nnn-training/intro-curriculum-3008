@@ -38,8 +38,9 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  if (todo.list().length > 0) {
-    say(todo.list().join('\n'));
+  const list = todo.list()
+  if (list.length > 0) {
+    say(list.join('\n'));
   } else {
     say('（TODO はありません）');
   }
@@ -47,8 +48,9 @@ app.message(/^list/i, ({context, say}) => {
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  if (todo.donelist().length > 0) {
-    say(todo.donelist().join('\n'));
+  const donelist = todo.donelist()
+  if (donelist.length > 0) {
+    say(donelist.join('\n'));
   } else {
     say('（完了した TODO はありません）');
   }
