@@ -38,11 +38,21 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  if(todo.list().length > 0){
+  	say(todo.list().join('\n'));
+  }
+  else{
+	  say('The todo list is empty');
+  }
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  if(todo.donelist().length > 0){
+  	say(todo.donelist().join('\n'));
+  }
+  else{
+	say('The done-list is empty');
+  }
 });
 
 app.start();
