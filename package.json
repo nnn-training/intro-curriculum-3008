@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "@slack/bolt": "^3.8.1",
-    "dotenv": "^10.0.0",
-    "todo": "./todo"
+    "@slack/bolt": "^3.12.1",
+    "dotenv": "^16.0.2"
   }
 }
