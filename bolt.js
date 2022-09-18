@@ -37,12 +37,20 @@ app.message(/del (.+)/i, ({context, say}) => {
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+app.message(/^list/i, ({ context, say }) => {
+  if (todo.list().length === 0) {
+    say('（TODO はありません）');
+  } else {
+    say(todo.list().join('\n'));
+  }
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  if (todo.donelist().length === 0) {
+    say('（完了した TODO はありません）');
+  } else {
+    say(todo.donelist().join('\n'));
+  }
 });
 
 app.start();
