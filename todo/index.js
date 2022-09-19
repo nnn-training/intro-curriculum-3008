@@ -55,8 +55,8 @@ function done(taskName) {
  */
 function donelist() {
   return tasks
-  .filter(isDone)
-  .map(task => task.name);
+    .filter(isDone)
+    .map(task => task.name);
 }
 
 /**
