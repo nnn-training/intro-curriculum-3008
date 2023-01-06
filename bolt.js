@@ -56,5 +56,4 @@ app.message(/donelist/i, ({context, say}) => {
     say(donelist.join('\n'));
   }
 });
-
 app.start();
