@@ -38,11 +38,29 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  // 配列 空などで検索すれば方法が出てくるよ。
+  const list = todo.list();
+  if(list.length === 0) {
+    say('TODOはありません');
+  } else {
+    say(list.join('\n'));
+  }
+
+  // const taskName = undefined
+  // if ( taskName === todo.list()) {
+  //   say('TODOはありません')
+  // } else  {
+  //   say(todo.list().join('\n'));  
+  // }
 });
 
 app.message(/donelist/i, ({context, say}) => {
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('完了したtodoはありません')
+  } else {
   say(todo.donelist().join('\n'));
+  }
 });
 
 app.start();
