@@ -53,7 +53,6 @@ app.message(/donelist/i, ({context, say}) => {
   } else {
     say('完了したTODOはありません');
   }
-  say(todo.donelist().join('\n'));
 });
 
 app.start();
