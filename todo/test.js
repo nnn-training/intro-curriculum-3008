@@ -1,6 +1,6 @@
 'use strict';
 const todo = require('./index.js');
-const assert = require('assert');
+const assert = require('node:assert');
 
 // add と list のテスト
 todo.add('ノートを買う');
