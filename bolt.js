@@ -19,30 +19,39 @@ const app = new bolt.App({
   logLevel: 'debug'
 });
 
-app.message(/add (.+)/i, ({context, say}) => {
+app.message(/add (.+)/i, ({ context, say }) => {
   const taskName = context.matches[1].trim();
   todo.add(taskName);
   say(`追加しました: ${taskName}`);
 });
 
-app.message(/done (.+)/i, ({context, say}) => {
+app.message(/done (.+)/i, ({ context, say }) => {
   const taskName = context.matches[1].trim();
   todo.done(taskName);
   say(`完了にしました: ${taskName}`);
 });
- 
-app.message(/del (.+)/i, ({context, say}) => {
+
+app.message(/del (.+)/i, ({ context, say }) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+app.message(/^list/i, ({ context, say }) => {
+  if (todo.list().length !== 0) {
+    say(todo.list().join('\n'));
+  }else{
+    say("TODO はありません");
+  }
 });
 
-app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+app.message(/donelist/i, ({ context, say }) => {
+  if (todo.donelist().length !== 0) {
+    say(todo.donelist().join('\n'));
+  }else{
+    say("完了した TODO はありません");
+  } 
 });
+
 
 app.start();
