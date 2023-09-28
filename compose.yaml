@@ -5,3 +5,4 @@ services:
     tty: true
     volumes:
       - .:/bot-todo
+      - /bot-todo/node_modules

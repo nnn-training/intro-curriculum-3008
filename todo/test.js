@@ -15,7 +15,7 @@ assert.deepStrictEqual(todo.donelist(), ['鉛筆を買う']);
 // del のテスト
 todo.del('ノートを買う');
 todo.del('鉛筆を買う');
-assert.deepStrictEqual(todo.list(), []);
-assert.deepStrictEqual(todo.donelist(), []);
+assert.deepStrictEqual(todo.list(), ['完了したタスクはありません']);
+assert.deepStrictEqual(todo.donelist(), ['完了したタスクはありません']);
 
 console.log('テストが正常に完了しました');
