@@ -33,9 +33,7 @@ function isNotDone(task) {
  * @return {array}
  */
 function list() {
-  return tasks
-    .filter(isNotDone)
-    .map(task => task.name);
+  return tasks.length ? tasks.filter(isNotDone).map(task => task.name) : ['完了したタスクはありません'];
 }
 
 /**
@@ -54,9 +52,7 @@ function done(taskName) {
  * @return {array}
  */
 function donelist() {
-  return tasks
-    .filter(isDone)
-    .map(task => task.name);
+  return tasks.length ? tasks.filter(isDone).map(task => task.name) : ['完了したタスクはありません'];
 }
 
 /**
