@@ -30,7 +30,7 @@ app.message(/done (.+)/i, ({context, say}) => {
   todo.done(taskName);
   say(`完了にしました: ${taskName}`);
 });
- 
+
 app.message(/del (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
@@ -38,11 +38,23 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  const tasks = todo.list();
+  if (tasks.length !== 0) {
+    say(tasks.join("\n"));
+  }
+  else {
+    say("（TODOはありません）");
+  }
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  const tasks = todo.donelist()
+  if (tasks.length !== 0) {
+    say(tasks.join("\n"));
+  }
+  else {
+    say("（完了したTODOはありません）");
+  }
 });
 
 app.start();
