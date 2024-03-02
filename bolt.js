@@ -22,27 +22,30 @@ const app = new bolt.App({
 app.message(/add (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.add(taskName);
-  say(`追加しました: ${taskName}`);
+  say(`タスク追加ああああ！: ${taskName}`);
 });
 
 app.message(/done (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.done(taskName);
-  say(`完了にしました: ${taskName}`);
+  say(`タスク: ${taskName} 完了!!!!`);
 });
  
 app.message(/del (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
-  say(`削除しました: ${taskName}`);
+  say(`タスク削除!: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
+app.message(/^タスク/i, ({context, say}) => {
+  if(todo.list().length < 1){say('タスク無し！');return;}
   say(todo.list().join('\n'));
 });
 
-app.message(/donelist/i, ({context, say}) => {
+app.message(/完了したタスク/i, ({context, say}) => {
+  if(todo.list().length < 1){say('完了したタスク無し！');return;}
   say(todo.donelist().join('\n'));
 });
 
 app.start();
+console.log('おおおおおおお！！！！！');
