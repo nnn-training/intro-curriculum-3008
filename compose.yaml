@@ -3,4 +3,4 @@ services:
     build: .
     tty: true
     volumes:
-      - .:/bot-todo
+      - .:/intro-curriculum-3008

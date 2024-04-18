@@ -8,4 +8,4 @@ ENV LANG=ja_JP.UTF-8
 ENV TZ=Asia/Tokyo
 RUN useradd bot-todo -m
 USER bot-todo
-WORKDIR /bot-todo
+WORKDIR /intro-curriculum-3008
