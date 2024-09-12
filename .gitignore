@@ -57,6 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# Hubot stuff
-.DS_Store*
-.hubot_history
+# bash + REPL
+.bash_history
+.node_repl_history
