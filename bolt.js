@@ -7,10 +7,11 @@
 //   ボット名 list     - TODO の一覧表示
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
-const bolt = require('@slack/bolt');
-const dotenv = require('dotenv');
+import bolt from '@slack/bolt';
+import chalk from "chalk";
+import dotenv from 'dotenv';
 dotenv.config();
-const todo = require('todo');
+import todo from 'todo';
 
 const app = new bolt.App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -37,12 +38,12 @@ app.message(/del (.+)/i, ({context, say}) => {
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+app.message(/list/i, async({context, say}) => {
+  await say(`${todo.list()}` === "" ? "(TODOはありません)" : todo.list().join('\n'));
 });
 
-app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+app.message(/donelist/i, async({context, say}) => {
+  await say(`${todo.donelist()}` === "" ? "(完了したTODOはありません)" : todo.donelist().join('\n'));
 });
 
 app.start();
