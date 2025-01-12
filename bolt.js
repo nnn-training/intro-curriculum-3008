@@ -37,6 +37,7 @@ app.message(/del (.+)/i, ({context, say}) => {
   say(`削除しました: ${taskName}`);
 });
 
+
 app.message(/^list/i, ({context, say}) => {
   const list = todo.list();
   if (list.length === 0) {
