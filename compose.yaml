@@ -1,6 +1,7 @@
 services:
   app:
-    build: .
+    image: node:22.15.0-slim
     tty: true
     volumes:
-      - .:/bot-todo
+      - .:/app
+    working_dir: /app
