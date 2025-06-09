@@ -8,8 +8,6 @@
 //   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
 const bolt = require('@slack/bolt');
-const dotenv = require('dotenv');
-dotenv.config();
 const todo = require('todo');
 
 const app = new bolt.App({
@@ -38,11 +36,21 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  const list = todo.list();
+  if (list.length === 0) {
+    say('（TODOはありません）');
+  } else {
+    say(list.join('\n'));
+  }
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  const list = todo.donelist();
+  if (list.length === 0) {
+    say('（完了したTODOはありません）');
+  } else {
+    say(list.join('\n'));
+  }
 });
 
 app.start();
