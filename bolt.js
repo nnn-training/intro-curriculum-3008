@@ -1,11 +1,3 @@
-// Description:
-//   TODO を管理できるボットです
-// Commands:
-//   ボット名 add      - TODO を作成
-//   ボット名 done     - TODO を完了にする
-//   ボット名 del      - TODO を消す
-//   ボット名 list     - TODO の一覧表示
-//   ボット名 donelist - 完了した TODO の一覧表示
 'use strict';
 const bolt = require('@slack/bolt');
 const dotenv = require('dotenv');
@@ -37,12 +29,25 @@ app.message(/del (.+)/i, ({context, say}) => {
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
-});
+app.message(/^list/i, ({context, say}) => { 
+  const list = todo.list();
+  if (list.length === 0) {
+    say('(TODOはありません)');
+  } else {
+    say(list.join('\n'));
+  }
+}); 
 
-app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
-});
+app.message(/donelist/i, ({context, say}) => { 
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('(完了したTODOはありません)');
+  } else {
+    say(donelist.join('\n'));
+  }
+}); 
 
-app.start();
+(async () => {
+  await app.start();
+  console.log('⚡️ Bolt app is running!');
+})();
