@@ -38,11 +38,54 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
+  let list = todo.list();
+  if (list.length == 0) {
+	say('(TODO wa arimasenn) ');
+  } else {
+    say(list.join('\n'));
+  } 
+  });
+
+/**
+	  
+  const list = todo.list();
+  if (list.length === 0) {
+    say('(TODOはありません)');
+  } else {
+    say(list.join('\n'));
+  }
+});
+**/
+app.message(/donelist/i, ({context, say}) => {
+  let message = todo.donelist().join('\n');
+  if (!message){
+    say('(kannryousita TODO ha arimasenn)')
+    } else {
+	say(message);
+    }
+});
+/**
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('(完了したTODOはありません)');
+  } else {
+    say(donelist.join('\n'));
+  }
+});
+**/
+
+app.start();
+/**
+ *
+ * ------------------------------------
+app.message(/^list/i, ({context, say}) => {
   say(todo.list().join('\n'));
 });
 
 app.message(/donelist/i, ({context, say}) => {
+
   say(todo.donelist().join('\n'));
 });
 
 app.start();
+*/
