@@ -15,6 +15,7 @@ const todo = require('todo');
 const app = new bolt.App({
   token: process.env.SLACK_BOT_TOKEN,
   appToken: process.env.SLACK_APP_TOKEN,
+  signingSecret: process.env.SLACK_SINGING_SECRET,
   socketMode: true,
   logLevel: 'debug'
 });
@@ -30,7 +31,7 @@ app.message(/done (.+)/i, ({context, say}) => {
   todo.done(taskName);
   say(`完了にしました: ${taskName}`);
 });
- 
+
 app.message(/del (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
@@ -38,11 +39,21 @@ app.message(/del (.+)/i, ({context, say}) => {
 });
 
 app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+  const list =todo.list();
+  if (list.length === 0) {
+    say("TODO はありません");
+} else {
+    say(list.join('\n'));
+}
 });
 
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say("完了した TODO はありません");
+  } else {
+    say(donelist.join('\n'));
+  }
 });
 
 app.start();
