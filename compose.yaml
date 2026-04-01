@@ -1,6 +1,6 @@
 services:
   app:
-    image: node:22.18.0-slim
+    image: node:22.22.0
     tty: true
     volumes:
       - .:/app
