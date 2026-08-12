@@ -30,19 +30,29 @@ app.message(/done (.+)/i, ({context, say}) => {
   todo.done(taskName);
   say(`完了にしました: ${taskName}`);
 });
- 
+
 app.message(/del (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+app.message(/^list/i, ({ context, say }) => {
+  const list = todo.list();
+  if (list.length === 0) {
+    say('TODOはありません');
+  }else{
+    say(todo.list().join('\n'));
+  }
 });
 
-app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+app.message(/donelist/i, ({ context, say }) => {
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('完了したTODOはありません');
+  }else{
+    say(todo.donelist().join('\n'));
+  }
 });
 
 app.start();
