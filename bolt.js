@@ -30,19 +30,51 @@ app.message(/done (.+)/i, ({context, say}) => {
   todo.done(taskName);
   say(`完了にしました: ${taskName}`);
 });
- 
+
 app.message(/del (.+)/i, ({context, say}) => {
   const taskName = context.matches[1].trim();
   todo.del(taskName);
   say(`削除しました: ${taskName}`);
 });
 
-app.message(/^list/i, ({context, say}) => {
-  say(todo.list().join('\n'));
+// 練習問題で修正する前
+// app.message(/^list/i, ({context, say}) => {
+//   say(todo.list().join('\n'));
+// });
+app.message(/^list/i, ({ context, say }) => {
+  const list = todo.list();
+  if (list.length === 0) {
+    say(`（TODO はありません）`);
+  } else {
+    say(list.join('\n'));
+  }
+
 });
 
+// 練習問題で修正する前
+// app.message(/donelist/i, ({context, say}) => {
+//   say(todo.donelist().join('\n'));
+// });
+// 教材解答コード
+/*
 app.message(/donelist/i, ({context, say}) => {
-  say(todo.donelist().join('\n'));
+  const donelist = todo.donelist();
+  if (donelist.length === 0) {
+    say('(完了したTODOはありません)');
+  } else {
+    say(donelist.join('\n'));
+  }
+});
+*/
+
+// 先生の動画解説のコード
+app.message(/donelist/i, ({context, say}) => {
+  let message = todo.donelist().join('\n');
+  if (!message) {
+    say('(完了したTODOはありません)');
+  } else {
+    say(message);
+  }
 });
 
 app.start();
